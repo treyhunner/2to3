@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Switching From Python 2 to Python 3</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/truthful.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/github.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+      <section>
+
+        <section data-background="#ffffff" data-background-transition="zoom" data-transition="zoom" data-transition-speed="fast">
+          <h1>Switching From <nobr>Python 2</nobr> to <nobr>Python 3</nobr></h1>
+          <p>
+          <small><a href="http://treyhunner.com" rel="author">Trey Hunner</a> / <a href="https://twitter.com/treyhunner">@treyhunner</a></small>
+          </p>
+          <aside class="notes" data-markdown>
+            TODO
+          </aside>
+        </section>
+
+        <section>
+          <div class="aboutme-card">
+            <a href="http://truthful.technology"><img src="truthful-technology-logo.svg" class="no-style aboutme-logos"></a>
+            <span>On-site training for Python/Django</span>
+          </div>
+          <div class="aboutme-card">
+            <a href="http://weeklypython.chat"><img src="pythonchat-logo.png" class="no-style aboutme-logos"></a>
+            <span>Weekly Python Chat live webcast host</span>
+          </div>
+          <div class="aboutme-card">
+            <a href="http://pythonmorsels.com"><img src="morsels-logo.svg" class="no-style aboutme-logos"></a>
+            <span>Python Morsels</span>
+          </div>
+          <div class="aboutme-card">
+            <a href="http://pythonsd.org"><img src="pythonsd-logo.svg" class="no-style aboutme-logos"></a>
+            <span>San Diego Python meetup co-organizer</span>
+          </div>
+          <div class="aboutme-card">
+            <a href="http://djangogirls.org/sandiego"><img src="djangogirls-logo.svg" class="no-style aboutme-logos"></a>
+            <span>Django Girls San Diego co-organizer</span>
+          </div>
+          <div class="aboutme-card">
+            <a href="https://www.python.org/psf-landing/"><img src="psf-logo.png" class="no-style"></a>
+            <span>Python Software Foundation director</span>
+          </div>
+          <aside class="notes" data-markdown>
+            - My name is Trey.  I help Python &amp; Django teams on-board new teammates and turn their front-end developers into full-stack Django developers.
+            - I also host a free live webcast every week on Python-related topics, usually Saturdays at 9am Pacific Time
+            - And I run a Python exercise subscription service where I take the most valuable exercises from my trainings and send 1 out every week.  It's called Python Morsels.
+            - I'm also one of the co-organizers of my local Python meetup in San Diego
+            - I've helped organize four Django Girls workshops in Southern California
+            - And I'm also one of the 11 directors at the Python Software Foundation
+            - That's a bit about me... now let's talk about looping
+          </aside>
+        </section>
+
+
+        </section>
+
+        <section>
+          <h2>Approaches to Upgrading</h2>
+          <ul>
+            <li>Gradual: add Python 3 support and eventually drop Python 2</li>
+            <li>Sudden: Upgrade code to Python 3 and drop Python 2 immediately</li>
+            <li>Extreme: rewrite the entire code base in Python 3</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - TODO
+          </aside>
+        </section>
+
+        <section>
+          <h2>Steps For Upgrading</h2>
+          <ul>
+            <li>Tests: have a process for verifying all functionality in your code</li>
+            <li>Use tools to help you upgrade (2to3, python-future, six)</li>
+            <li>Manually fix problems that can't be fixed automatically</li>
+            <li>Start running your code in Python 3 in production</li>
+            <li>Drop Python 2 support (if you haven't already)</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - TODO
+          </aside>
+        </section>
+
+        <section>
+          <h2>Using a tool to help you upgrade</h2>
+          <ul>
+            <li>2to3 is a one-way upgrade tool: it's good for sudden upgrading but not for gradual upgrading</li>
+            <li>six is good for gradual upgrading but it's not an automated tool: it's a helper library</li>
+            <li>python-future allows you to upgrade your code to support 2 and 3 at once: it's like 2to3 without dropping 2 support</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - TODO
+          </aside>
+        </section>
+
+        <section>
+          <h2>Manually upgrading</h2>
+          <ul>
+            <li>You can use many Python 3 features within Python 2.7 by using __future__ imports, python-future should add these for you automatically though</li>
+            <li>Fixing byte string vs unicode usage and character encodings</li>
+            <li>Fixing which standard library features are used (things moved around)</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - TODO
+          </aside>
+        </section>
+
+        <section>
+          <h2>We're not done yet</h2>
+          <ul>
+            <li>Upgrading opens up so many new doors for you to open</li>
+            <li>Many features in Python 3 can be used in Python 2 (__future__, PyPI libraries, etc)</li>
+            <li>Many features in Python 3 cannot be used in Python 2 (syntactic changes especially)</li>
+            <li>Python 3 exclusive code can look and feel so much better than code than supports both 2 and 3 (which is sort of awkward in-between code)</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - TODO
+          </aside>
+        </section>
+
+        <section>
+          <h2>Big Python 3 syntax wins</h2>
+          <aside class="notes" data-markdown>
+            - TODO
+            - Using multiple \**kwargs, merge dictionaries, etc
+            - f-strings vs format: why it's better and how to upgrade
+            - Keyword-only arguments (this is super awkward in Python 2)
+            - type hinting!
+            - Lots of standard library things like functools.total_ordering and UserDict actually work
+          </aside>
+        </section>
+
+      <section style="text-align: left;" data-background="#663399" data-background-transition="slide" data-transition="slide">
+        <h1>Trey Hunner</h1>
+        <p>
+          Python &amp; Django Team Trainer
+        </p>
+        <p>
+          <small>
+            Need help getting your team up to speed on Python?
+            <br><br>
+            Contact me: <a href="mailto:&#116;&#114;&#101;&#121;&#064;&#116;&#114;&#117;&#116;&#104;&#102;&#117;&#108;&#046;&#116;&#101;&#099;&#104;&#110;&#111;&#108;&#111;&#103;&#121;">&#116;&#114;&#101;&#121;&#064;&#116;&#114;&#117;&#116;&#104;&#102;&#117;&#108;&#046;&#116;&#101;&#099;&#104;&#110;&#111;&#108;&#111;&#103;&#121;</a>
+          </small>
+        </p>
+        <p>
+        <a href="http://truthful.technology"><img src="logo.svg" class="no-style logo"></a>
+        <a href="http://pythonmorsels.com"><img src="python-morsels-logo.svg" class="no-style logo"></a>
+        </p>
+        <aside class="notes" data-markdown>
+          - My name is Trey Hunner
+          - I would love to teach Python and Django at your company
+          - Feel free to shoot me an email
+          - Thank you!
+        </aside>
+      </section>
+
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
