@@ -77,89 +77,453 @@
         </section>
 
         <section>
+          <h2>Why Upgrade to Python 3?</h2>
+          <ul>
+            <li class="fragment">Python 2 has some really weird quirks that were fixed in Python 3 (Search #pythonoddity on Twitter)</li>
+            <li class="fragment">Python 3 fixed about 20 years of Python 2 bugs-turned-features</li>
+            <li class="fragment">Python 2 will no longer be supported after 2020</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - This talk is *not* about *why* you should switch to Python 3
+            - So if you need me to convince you of *why* you should upgrade to Python 3, this is the only slide I have on that topic
+            - **(click)**  Python 2 has some really weird quirks in it.  You can find plenty of these quirks discussed on Twitter.
+            - **(click)**  Python 2 hasn't had any new features for years.  Even before Python 2 development stopped, a number of new features were being added exclusively to Python 3 and many of them were never back-ported.
+            - **(click)**  One of the more important reasons to upgrade for many people is that official Python 2 support is stopping in a couple years.
+          </aside>
+        </section>
+
+        <section>
           <h2>Approaches to Upgrading</h2>
           <ul>
-            <li>Gradual: add Python 3 support and eventually drop Python 2</li>
-            <li>Sudden: Upgrade code to Python 3 and drop Python 2 immediately</li>
-            <li>Extreme: rewrite the entire code base in Python 3</li>
+            <li class="fragment">Gradual: add support for 3, drop 2 eventually</li>
+            <li class="fragment">Sudden: upgrade code to 3 and drop 2 immediately</li>
+            <li class="fragment">Extreme: rewrite the entire code base in Python 3</li>
           </ul>
           <aside class="notes" data-markdown>
-            - TODO
+            - So we know that we need to upgrade... but *how do we do it*?
+            - We can't just start using Python 3.  Python 3 isn't fully backwards-compatible, so upgrading isn't as easy as installing Python 3 and running your code in it.
+            - So we're going to need to choose between a few different approaches we could take...
+              - **(click)** The gradual approach is to add support for Python 3 and then eventually drop Python 2 support at some point in the future.  This means writing code in such a way that it can run in *both* Python 2 and Python 3 at the same time.
+              - **(click)** The sudden approach to upgrading involves upgrading your entire codebase to Python 3 at once without worrying about supporting Python 2 at the same time.  This requires dropping Python 2 support during your upgrade process.
+              - **(click)** The extreme approach to upgrading is to rewrite your entire codebase in Python 3.  If you have a really small codebase, this isn't necessary the worst idea.  We're not going to talk about that approach at all though.
           </aside>
         </section>
 
         <section>
-          <h2>Steps For Upgrading</h2>
+          <h2>Gradual or Sudden Upgrading?</h2>
           <ul>
-            <li>Tests: have a process for verifying all functionality in your code</li>
-            <li>Use tools to help you upgrade (2to3, python-future, six)</li>
-            <li>Manually fix problems that can't be fixed automatically</li>
-            <li>Start running your code in Python 3 in production</li>
-            <li>Drop Python 2 support (if you haven't already)</li>
+            <li class="fragment">The <code>2to3</code> tool (built-in to Python) is for <strong>sudden upgrades</strong></li>
+            <li class="fragment">Docs include "Porting Python 2 Code to Python 3" guide</li>
+            <li class="fragment">The porting guide recommends <strong>gradual upgrades</strong></li>
+            <li class="fragment">The porting guide doesn't mention <code>2to3</code> at all</li>
+            <li class="fragment">The community realized sudden upgrades are really hard</li>
           </ul>
           <aside class="notes" data-markdown>
-            - TODO
+            - So we need to decide whether we're taking the sudden approach or the gradual approach
+            - There is a tool built-in to Python 2 that allows upgrading suddenly.  It's called 2to3. **(click)**
+            - The official Python 2 documentation also includes a guide on how to port your code from 2 to 3. **(click)**
+            - But that guide recommends the gradual upgrade approach though. **(click)**
+            - In fact the official porting guide doesn't even mention 2to3 **(click)**
+						- You can find resources that recommend 2to3, but most of them are older predate some of the tools that I'm going to be talking about. **(click)**
+            - Sudden upgrades can cause bugs or put your development cycle on pause for a long time
           </aside>
         </section>
 
         <section>
-          <h2>Using a tool to help you upgrade</h2>
-          <ul>
-            <li>2to3 is a one-way upgrade tool: it's good for sudden upgrading but not for gradual upgrading</li>
-            <li>six is good for gradual upgrading but it's not an automated tool: it's a helper library</li>
-            <li>python-future allows you to upgrade your code to support 2 and 3 at once: it's like 2to3 without dropping 2 support</li>
-          </ul>
+          <p><blockquote cite="https://youtu.be/Oiw23yfqQy8?t=17m5s">&ldquo;What we intentionally didn't do, but what I still regret, is we said there will be no way at runtime to combine Python 2 code and Python 3 code in the same interpreter.&rdquo; <nobr>&mdash; Guido van Rossum</nobr>, PyCascades 2018</blockquote></p>
           <aside class="notes" data-markdown>
-            - TODO
+            - TODO add fragment highlighting
+            - TODO sudden upgrading used to be the only way
+          </aside>
+        </section>
+
+        <section>
+          <h2>I recommend gradual upgrading</h2>
+          <aside class="notes" data-markdown>
+            - So we're going to focus on gradual upgrades
+            - The official Python 3 porting guide recommends gradual upgrades and there are a couple well-maintained third-part tools to help us upgrade gradually.
           </aside>
         </section>
 
         <section>
           <h2>Manually upgrading</h2>
           <ul>
-            <li>You can use many Python 3 features within Python 2.7 by using __future__ imports, python-future should add these for you automatically though</li>
-            <li>Fixing byte string vs unicode usage and character encodings</li>
-            <li>Fixing which standard library features are used (things moved around)</li>
+            <li class="fragment">Write "straddling code" in the "common subset" of 2/3</li>
+            <li class="fragment"><code>__future__</code> imports for enabling back-ported features</li>
+            <li class="fragment">Removing usages of deprecated libraries and syntax</li>
+            <li class="fragment">Fix data/text-related issues (unicode vs bytes)</li>
+            <li class="fragment">Use <code>six</code> library for writing Python 2/3 compatible code</li>
           </ul>
           <aside class="notes" data-markdown>
+            - We're going to talk about some tools to help you gradually upgrade in a moment, but first let's talk about how to upgrade manually
+            - **(click)** If you want to upgrade gradually, you're going to need to write your code in such a way that it will run in both Python 2 and Python 3.  To do this you'll need to mostly stick to features that fall within a "common subset" 2 and 3
+            - **(click)** You can use dunder future imports (that's double-underscore future) to help you out.  These are basically feature flags that change Python 2 so it acts more like Python 3.
+            - **(click)** You'll need to stop using syntax and features that only exist in Python 2
+            - **(click)** And you'll be a lot more explicit about what's text and what's binary data.  I'll explain that more later.
+            - **(click)** You can use a third-party library called six to help you with all this.  Six is a compatibility library that has helper tools and common imports to make writing code that works in both 2 and 3 a lot simpler to write
+          </aside>
+        </section>
+
+        <section>
+          <p><blockquote cite="https://youtu.be/Oiw23yfqQy8?t=19m15s">&ldquo;Originally we thought that the intersection of Python 2 and Python 3 would be unusable.  It turns out it's not so bad.&rdquo; <nobr>&mdash; Guido van Rossum</nobr>, PyCascades 2018</blockquote></p>
+          <aside class="notes" data-markdown>
+            - TODO add fragment highlighting
             - TODO
           </aside>
         </section>
 
         <section>
-          <h2>We're not done yet</h2>
+          <h2>Compatibility Issues</h2>
+          <pre class="python fragment"><code data-trim data-noescape>
+def hex_sub(hex_string):
+    return <span class="fragment highlight-current-blue">unichr</span>(int(hex_string[1:], 16))
+          </code></pre>
+          <pre class="python fragment"><code data-trim data-noescape>
+def hex_sub(hex_string):
+    return <span class="fragment highlight-current-blue">chr</span>(int(hex_string[1:], 16))
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - **(click)** If you want to convert an integer to a unicode character in Python 2, you could use a function spelled **(click)** **unichr**
+            - **(click)** If you wanted to do the same thing in Python 3, you have to use the **(click)** **chr** function instead
+            - **(click)** The `chr` function existed in Python 2 but it did something different
+          </aside>
+        </section>
+
+        <section>
+          <h2>Compatibility Libraries</h2>
+          <pre class="python fragment"><code data-trim>
+from six import unichr
+
+def hex_sub(hex_string):
+    return unichr(int(hex_string[1:], 16))
+          </code></pre>
+          <pre class="python fragment"><code data-trim>
+from builtins import chr
+
+def hex_sub(hex_string):
+    return chr(int(hex_string[1:], 16))
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - If you want to support both Python 2 and 3, you could use the `six` module to continue using the old `unichr` function **(click)**
+            - When you eventually drop support for Python 2, you'll want to rename that function to `chr` and remove that `six` import at that point
+            - Or if you're using the future library, you could write this code **(click)**
+            - This code runs in Python 2 if you have `future` installed
+            - And it runs on Python 3 without installing anything at all because Python 3 has a `builtins` library that `future` backports
+            - So the big difference between `six` and `future` is that `future` allows you to write code that looks and feels a lot more like Python 3
+          </aside>
+        </section>
+
+        <section>
+          <h2>future is flexible</h2>
+          <pre class="python"><code data-trim>
+from builtins import chr
+
+def hex_sub(hex_string):
+    return chr(int(hex_string[1:], 16))
+          </code></pre>
+          <pre class="python fragment"><code data-trim>
+from past.builtins import unichr
+
+def hex_sub(hex_string):
+    return unichr(int(hex_string[1:], 16))
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - The `future` library is flexible though
+            - So if you needed to use both the old `chr` function and the new `unichr` function in your Python 2 code, you could import those into Python 3 instead **(click)**
+            - In the `future` library, the old builtins are forward-ported and the new builtins are back-ported
+          </aside>
+        </section>
+
+        <section>
+          <h2>Compatibility libraries</h2>
           <ul>
-            <li>Upgrading opens up so many new doors for you to open</li>
-            <li>Many features in Python 3 can be used in Python 2 (__future__, PyPI libraries, etc)</li>
-            <li>Many features in Python 3 cannot be used in Python 2 (syntactic changes especially)</li>
-            <li>Python 3 exclusive code can look and feel so much better than code than supports both 2 and 3 (which is sort of awkward in-between code)</li>
+            <li class="fragment"><code>six</code> is a very minimalistic compatibility library that makes many of the hard things easier</li>
+            <li class="fragment"><code>future</code> is a more extensive and includes shims to allow embracing many Python 3-isms fully in Python 2</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - TODO six
+            - TODO future is a much more extensive and flexible compatibility library that includes forward-ports in addition to backports as well as shims to allow embracing many Python 3-isms fully in Python 2
+          </aside>
+        </section>
+
+        <section>
+          <h2>Using automated tools to upgrade</h2>
+          <ul>
+            <li class="fragment"><code>2to3</code> is for sudden upgrades (support 3, drop 2)</li>
+            <li class="fragment"><code>modernize</code> transforms code to a common 2/3 subset</li>
+            <li class="fragment"><code>future</code> is like modernize but it uses Python 3 shims</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - TODO there are lots of tools you can use to upgrade.  Which one you choose largely depends on your circumstances.
+            - modernize is like 2to3 without dropping 2 support
+            - TODO modernize requires the six library I mentioned earlier.
+            - TODO future is like modernize, but it allows you to write your code using a more Python 3-like syntax
+            - TODO I already mentioned future as a compatibility library... it's also an automated code conversion tool
+          </aside>
+        </section>
+
+        <section>
+          <h2>Slightly Confusing Naming</h2>
+          <pre class="bash fragment"><code data-trim data-noescape>
+$ pip install modernize
+<span class="fragment">$ python-modernize -w my_file.py</span>
+          </code></pre>
+          <pre class="bash fragment"><code data-trim data-noescape>
+$ pip install future
+<span class="fragment">$ futurize -w my_file.py</span>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            - TODO
+            - TODO syntax is very similar between the two, despite the slightly confusing name differences
+          </aside>
+        </section>
+
+        <section>
+          <h2>Steps For Upgrading</h2>
+          <ol>
+            <li>Hove a solid testing process</li>
+            <li>Make sure you're on a modern version of Python 2.7</li>
+            <li>Learn the differences between Python 2 and 3</li>
+            <li>Use tools to help you upgrade your code</li>
+            <li>Manually fix problems that can't be fixed automatically</li>
+            <li>Make sure your tests pass</li>
+            <li>Start running your code in Python 3 in production</li>
+            <li>Drop Python 2 support (if you haven't already)</li>
+          </ol>
+          <aside class="notes" data-markdown>
+            - The official python 3 porting guide lays out the steps for upgrading pretty nicely
+            - You've hopefully already done the first step because it's probably the hardest part
+            - Make sure you've got a really good test process for your code.  This can be a manual process or an automated one, but it needs to be repeatable and thorough.
+            - You should also make sure you only support recent versions of Python.  It's hard to support older versions of Python 2 at the same time as Python 3.  It's easiest if you only support Python 2.7.
+            - You'll need to learn a bit about the differences between 2 and 3... you'll be doing that as you upgrade
+            - And you'll need to use tools to help you upgrade, both an automated code conversion tool and a compatibility library that your new code will depend on
+            - Unfortunately the automated tools can't fix everything for you.  You're going to need to fix some things manually.  I'll talk about why that is in a bit.
+            - Once your code works again in Python 2, you'll need to make sure it works in Python 3 and then you can slowly make the switch to using Python 3 exclusively
+            <!-- - TODO (move to later?) Unless you understand every single difference between Python 2 and Python 3, you're going to have a really hard time determining whether code will break by looking at it in a code review. -->
+          </aside>
+        </section>
+
+        <section>
+          <h2>The automated tools are pretty smart</h2>
+          <ul>
+            <li class="fragment">Convert <code>print</code> statements to <code>print</code> functions</li>
+            <li class="fragment">Convert old exception handling syntaxes to new ones</li>
+            <li class="fragment">Fix lots of removed syntax (<code>040 &lt;> 40L</code>)</li>
+            <li class="fragment">Convert old standard library imports to common paths</li>
+            <li class="fragment">Wrap calls to <code>zip()</code> and <code>range()</code> in <code>list()</code> when it's necessary and don't when it isn't</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - The automated conversion tools are pretty good about...
+            - **(click)** Turning print statements into print function calls
+            - The conversion tools handle a lot of the syntactic changes pretty well too
+            - The old exception raising syntax was removed **(click)**
+            - And old exception catching syntax was also removed
+            - **(click)** Octal numbers, longs, backticks, metaclasses.  There's a bunch of syntax conversions the tools handle really well.
+            - **(click)** Also lots of things were moved around in the standard library.  The compatibility libraries come in handy for handling that.
+            - **(click)** And the behavior changes of map, filter, zip, and range are even handled pretty well by some of the tools
+          </aside>
+        </section>
+
+        <section>
+          <h2>Problems that the tools stumble on</h2>
+          <!--<ul>
+            <li>TODO dummy LIs with same contents but are hidden?</li>
+          </ul>-->
+          <aside class="notes" data-markdown>
+            - I'd like to talk about some problems that the tools stumble on...
+            - But before we talk about these problems, we need to go through a very brief history lesson on text and bytes in Python-land
+          </aside>
+        </section>
+
+        <section>
+          <h2>The Unicode Situation</h2>
+          <ul>
+            <li class="fragment">Python 0.9 was released before unicode existed</li>
+            <li class="fragment">Python's didn't used to separate bytes from text</li>
+            <li class="fragment">In Python 3, text and bytes and very distinct</li>
+            <li class="fragment">The automated tools take blind guesses about which strings should be text and which should be bytes</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - Python 0.9 was released before unicode existed **(click)**
+            - Python 1.0 was released before the internet was a big deal
+            - **(click)** Python never used to make a distinction between text and bytes
+            - Unicode exists to separate the meaning of text from the bytes that represent the text
+            - Text-based transformations don't work on raw bytes, they work on text
+            - **(click)** Python 3 (wonderfully!) distinguishes between text and bytes. Python 2 does not.
+            - **(click)** If Python doesn't know what you're trying to represent, the automated tools aren't going to know either
+            - You're going to need to clarify in your code where and when you want text (meaning unicode) or bytes (meaning byte strings)
+            - Ned Batchelder has a great talk on unicode talk during which he talks about "the unicode sandwich" (explain)
+            - The text versus binary data part of the official porting guide explains this idea pretty well too
+          </aside>
+        </section>
+
+        <section>
+          <h2>Problems that the tools stumble on</h2>
+          <ul>
+            <li class="fragment">Python 2's <code>StringIO</code> split into <code>io.StringIO</code> for text and <code>io.BytesIO</code> for bytes</li>
+            <li class="fragment">Using <code>open()</code> built-in with text data (Python 3's open lives in <code>io.open</code> in Python 2)</li>
+            <li class="fragment"><code>5/2 == 2</code> in Python 2 but <code>5/2 == 2.5</code> in Python 3</li>
+            <li class="fragment">Some things don't exist in the same form (<code>cmp</code> function)</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - So many of the problems you'll encounter with the automated tools are due to the *wonderful* new distinction between text and bytes and the fact that Python 2 code *doesn't* have this distinction
+            - Because Python 3 requires this distinction and Python 2 lacks doesn't, you cannot always unambiguously convert Python 2 code into Python 3 code
+            - Some unicode-related issues include **(click)**
+              - Determining which StringIO alternative to use... io.StringIO or io.BytesIO
+              - **(click)** The open() functionality changed.  Python 2 always gives you bytes back.  Python 3 gives you either text or bytes depending on what you ask for.
+            - Division between integers changed in Python 3. **(click)**
+            - The automated tools fail on this one because they don't know if your variables are integers or floating point numbers.
+            - That's one of the downsides to variables that don't have types.  (Side note: type hinting is kind of cool)
+            - **(click)** And then there's some things that just don't really exist anymore in Python 3
+          </aside>
+        </section>
+
+        <section>
+          <h2>Manually fixing stuff</h2>
+          <ul>
+            <li class="fragment">Running Python 2 with the <code>-3</code> will note things that <code>2to3</code> can't fix</li>
+            <li class="fragment">Running pylint <code>--py3k</code> on your code will display warnings/errors for constructs which are invalid or removed in Python 3</li>
+            <li class="fragment">Use <code>io.open</code> instead of built-in <code>open</code></li>
+            <li class="fragment">Specify <code>u</code> or <code>b</code> prefix for all string literals</li>
+            <li class="fragment">Replace <code>StringIO</code> with either <code>io.StringIO</code> or <code>io.BytesIO</code></li>
+            <li class="fragment">Using the division operator consistently</li>
           </ul>
           <aside class="notes" data-markdown>
             - TODO
+            - Running Python 2 with the -3 flag will find things that 2to3 will miss.  You won't be using `2to3`, but pylint includes a similar feature (that isn't very well-documented unfortunately)
+            - run pylint --py3k on your code... how is this different from or better than -3 flag?
+            - Be explicit about text/bytes
+              - Use the `io.open` function instead of the built-in one.  The one in the `io` module is the one that Python 3 uses.  Also make sure you're correctly opening files in text mode or bytes mode as needed.
+              - Add u and b prefixes to all your string literals to clarify whether they're bytes or unicode
+              - use io.StringIO or io.BytesIO as appropriate
+            - Removing things you know will be problems: for example `__cmp__` methods
+            - Make your use of the division operators consistent between Python 2 and 3.  This one is tricky.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Using the tools can be complex</h2>
+          <ol>
+            <li>Upgrade your test code using modernize or future</li>
+            <li>Use <code>pylint --py3k</code></li>
+            <li>Code review your tests and ensure they pass in Python 2</li>
+            <li>Upgrade your non-test code using modernize or future</li>
+            <li>Use <code>pylint --py3k</code></li>
+            <li>Run your tests against your code in Python 2 and fix any new bugs</li>
+            <li>Run your tests against your code in Python 3 and fix issues you haven't caught yet</li>
+            <li>Once your code seems to work in 3, run code with <code>python3 -bb</code> to find bytes/unicode mixups</li>
+          </ol>
+          <aside class="notes" data-markdown>
+            - TODO Using the tools often isn't a simple process: "Here's one strategy"
+            - Use pylint --py3k against your test code to find things that might be problematic
+              - Manually change StringIO to use io.BytesIO or io.StringIO as appropriate because the tools might use the wrong one
+              - Manually remove uses of cmp() and __cmp__
+            - Upgrade your test code using python-modernize or future
+            - Carefully review the upgraded test code (you don't have tests for your tests!) before pushing it into master
+            - Run your tests against your code in Python 2 to make sure they all still pass
+              "You shouldn't have changed the functionality of your tests, so they should still be passing as before"
+            - Catch: you should make your tests fully 3-ready and make sure they still work before you touch your non-test code, but you often can't even run your tests in 3 if your code doesn't run in 3.
+            - Use pylint --py3k against your non-test code to find things that might be problematic
+              "Manually upgrade StringIO and fix cmp and such"
+            - Upgrade your non-test code using python-modernize or future (same one you used before)
+            - Run your tests against your code in Python 2 to see if your code still functions
+            - Manually fix issues as you catch them
+            - Run pylint --py3k against your code again and carefully manually fix things it notes
+              "It will note non-issues sometimes because it doesn't know what is a problem and what isn't"
+            - Run your tests in Python 3 and manually fix upgrade issues that you haven't caught yet
+              "You'll often need to research what the bugs are at this stage"
+            - Once your code seems to be working in Python 3, run your tests with "python3 -bb" to catch places in your code where you put byte strings inside of unicode strings
+            - Upgrade to Python 3 in just 5 minutes: I promise I'm not lying to 
+          </aside>
+        </section>
+
+        <!--
+        <section>
+          <h2>Comparing the tools: what they handle</h2>
+          <ul>
+          </ul>
+          <aside class="notes" data-markdown>
+            - TODO compare various use cases of modernize and future
+          </aside>
+        </section>
+        -->
+
+        <!--
+        <section>
+          <h2>future: is it a bad idea?</h2>
+          <ul>
+          </ul>
+          <aside class="notes" data-markdown>
+            - TODO is shimming code dangerous? (research this)
+          </aside>
+        </section>
+        -->
+
+        <section>
+          <h2>We're not done yet</h2>
+          <ul>
+            <li class="fragment">Upgrading opens up so many new doors for you to open</li>
+            <li class="fragment">Many features in Python 3 can be used in Python 2 already, but there are lots that cannot</li>
+            <li class="fragment">Python 3 exclusive looks much nicer than "straddling code" that works in both 2 and 3.  I promise.</li>
+            <li class="fragment">Python 3: brought to you by the makers of Python 2</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - Upgrading to code that runs in Python 3 could be the end of your Python 3 porting journey **(click)**
+            - But it could also be just the beginning **(click)**
+            - There's about a decade's worth of Python 3-only features that you've been missing out on up to now. **(click)**
+            - After you've upgraded, your code in going to look pretty ugly because it was meant to run in both Python 2 and Python 3 **(click)**
+            - Once you've started removing the parts of your code that only exist for Python 2 compatibility and start embracing newer Python 3 features, you'll probably find that you actually *really* enjoy using Python 3.
           </aside>
         </section>
 
         <section>
           <h2>Big Python 3 syntax wins</h2>
+          <ul>
+            <li class="fragment">Type annotations!</li>
+            <li class="fragment">The way more powerful <code>*</code> and <code>**</code> syntaxes</li>
+            <li class="fragment">F-Strings!</li>
+            <li class="fragment">Underscores in numeric literals: <code>1_000_000</code></li>
+            <li class="fragment"><code>yield from</code> and <code>async</code> and <code>await</code></li>
+            <li class="fragment">Dictionary key order is preserved</li>
+            <li class="fragment">Lots more cool things in the standard library</li>
+          </ul>
           <aside class="notes" data-markdown>
-            - TODO
-            - Using multiple \**kwargs, merge dictionaries, etc
-            - f-strings vs format: why it's better and how to upgrade
-            - Keyword-only arguments (this is super awkward in Python 2)
-            - type hinting!
-            - Lots of standard library things like functools.total_ordering and UserDict actually work
+              - Python 3 not allows you to add type hints to your code. **(click)**  These are great for documentation and they're great for making sure your code is correct!
+              - **(click)** You can more easily merge dictionaries merge dictionaries, you can unpack multiple dictionaries of `**kwargs` to functions, and all sorts of cool things with the packing and unpacking generalizations
+              - You can also use the `*` for writing keyword-only arguments, which is super awkward in Python 2
+              - **(click)** F-strings are like the format method in Python 2 except they're way less verbose
+              - **(click)** You can use underscore in numeric literals as a thousands separator
+              - **(click)** Lots of standard library things like functools.total_ordering and UserDict actually work
+              - **(click)** Generators got some great syntactic additions.  There's yield from.  And the async and await syntax.
+              - **(click)** Python 3.7 preserves the order of dictionaries, keyword arguments, and class attributes.  This is a really cool feature change.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Changed Python 3 "Features"</h2>
+          <ul>
+            <li class="fragment">True division instead of floor division</li>
+            <li class="fragment">The flexible print function</li>
+            <li class="fragment">Strict ordering (strings cannot be compared to numbers)</li>
+          </ul>
+          <aside class="notes" data-markdown>
+              - Sometimes it's hard to tell a bug from a feature
+              - Python 3 removed or changed a lot of features to make them look less like bugs
+              - Python 3 uses true division instead of floor division **(click)**
+              - Python 3 doesn't have a print statement.  Instead there's a print function which is much more flexible. **(click)**
+              - And Python 3 requires strict ordering of objects. **(click)**
+              - In Python 2, loose ordering was a bug waiting to happen.
           </aside>
         </section>
 
       <section style="text-align: left;" data-background="#663399" data-background-transition="slide" data-transition="slide">
-        <h1>Trey Hunner</h1>
-        <p>
-          Python &amp; Django Team Trainer
-        </p>
+        <h2>Need help getting your team <nobr>up to speed on Python?</nobr></h2>
+        <h3>
+          <strong>Trey Hunner</strong><br>
+          <small>Python &amp; Django Team Trainer</small>
+        </h3>
         <p>
           <small>
-            Need help getting your team up to speed on Python?
-            <br><br>
             Contact me: <a href="mailto:&#116;&#114;&#101;&#121;&#064;&#116;&#114;&#117;&#116;&#104;&#102;&#117;&#108;&#046;&#116;&#101;&#099;&#104;&#110;&#111;&#108;&#111;&#103;&#121;">&#116;&#114;&#101;&#121;&#064;&#116;&#114;&#117;&#116;&#104;&#102;&#117;&#108;&#046;&#116;&#101;&#099;&#104;&#110;&#111;&#108;&#111;&#103;&#121;</a>
           </small>
         </p>
