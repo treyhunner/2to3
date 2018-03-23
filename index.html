@@ -603,80 +603,53 @@ $ <span class="fragment highlight-blue">futurize</span> -w my_file.py
             <li class="fragment">Some things don't exist in the same form (<code>cmp</code> function)</li>
           </ul>
           <aside class="notes" data-markdown>
-            - So many of the problems you'll encounter with the automated tools are due to the *wonderful* new distinction between text and bytes and the fact that Python 2 code *doesn't* have this distinction
-            - Because Python 3 requires this distinction and Python 2 lacks doesn't, you cannot always unambiguously convert Python 2 code into Python 3 code
+            - So a lot of the ambiguities that the automated conversion tools can't handle are due to this new distinction between text and bytes and the fact that Python 2 was really sloppy about requiring this distinction
+            - Because Python 3 requires this distinction and Python 2 doesn't, you cannot unambiguously convert any Python 2 code into Python 3 code
             - Some unicode-related issues include **(click)**
               - Determining which StringIO alternative to use... io.StringIO or io.BytesIO
               - **(click)** The open() functionality changed.  Python 2 always gives you bytes back.  Python 3 gives you either text or bytes depending on what you ask for.
             - Division between integers changed in Python 3. **(click)**
             - The automated tools fail on this one because they don't know if your variables are integers or floating point numbers.
-            - That's one of the downsides to variables that don't have types.  (Side note: type hinting is kind of cool)
             - **(click)** And then there's some things that just don't really exist anymore in Python 3
           </aside>
         </section>
 
         <section>
-          <h2>Manually fixing stuff</h2>
+          <h2>Tips for manually fixing stuff</h2>
           <ul>
-            <li class="fragment">Running Python 2 with the <code>-3</code> will note things that <code>2to3</code> can't fix</li>
-            <li class="fragment">Running pylint <code>--py3k</code> on your code will display warnings/errors for constructs which are invalid or removed in Python 3</li>
             <li class="fragment">Use <code>io.open</code> instead of built-in <code>open</code></li>
             <li class="fragment">Specify <code>u</code> or <code>b</code> prefix for all string literals</li>
-            <li class="fragment">Replace <code>StringIO</code> with either <code>io.StringIO</code> or <code>io.BytesIO</code></li>
+            <li class="fragment">Convert <code>StringIO</code> to <code>io.StringIO</code> or <code>io.BytesIO</code></li>
             <li class="fragment">Using the division operator consistently</li>
+            <li class="fragment">Running <code>pylint --py3k</code> will prints warnings about code that might be invalid in Python 3</li>
           </ul>
           <aside class="notes" data-markdown>
-            - TODO
-            - Running Python 2 with the -3 flag will find things that 2to3 will miss.  You won't be using `2to3`, but pylint includes a similar feature (that isn't very well-documented unfortunately)
-            - run pylint --py3k on your code... how is this different from or better than -3 flag?
-            - Be explicit about text/bytes
-              - Use the `io.open` function instead of the built-in one.  The one in the `io` module is the one that Python 3 uses.  Also make sure you're correctly opening files in text mode or bytes mode as needed.
-              - Add u and b prefixes to all your string literals to clarify whether they're bytes or unicode
-              - use io.StringIO or io.BytesIO as appropriate
-            - Removing things you know will be problems: for example `__cmp__` methods
-            - Make your use of the division operators consistent between Python 2 and 3.  This one is tricky.
-          </aside>
-        </section>
-
-        <!-- 4 minutes -->
-        <section>
-          <h2>Using the tools can be complex</h2>
-          <ol>
-            <li>Upgrade your test code using modernize or future</li>
-            <li>Use <code>pylint --py3k</code></li>
-            <li>Code review your tests and ensure they pass in Python 2</li>
-            <li>Upgrade your non-test code using modernize or future</li>
-            <li>Use <code>pylint --py3k</code></li>
-            <li>Run your tests against your code in Python 2 and fix any new bugs</li>
-            <li>Run your tests against your code in Python 3 and fix issues you haven't caught yet</li>
-            <li>Once your code seems to work in 3, run code with <code>python3 -bb</code> to find bytes/unicode mixups</li>
-          </ol>
-          <aside class="notes" data-markdown>
-            - TODO Using the tools often isn't a simple process: "Here's one strategy"
-            - Use pylint --py3k against your test code to find things that might be problematic
-              - Manually change StringIO to use io.BytesIO or io.StringIO as appropriate because the tools might use the wrong one
-              - Manually remove uses of cmp() and __cmp__
-            - Upgrade your test code using python-modernize or future
-            - Carefully review the upgraded test code (you don't have tests for your tests!) before pushing it into master
-            - Run your tests against your code in Python 2 to make sure they all still pass
-              "You shouldn't have changed the functionality of your tests, so they should still be passing as before"
-            - Catch: you should make your tests fully 3-ready and make sure they still work before you touch your non-test code, but you often can't even run your tests in 3 if your code doesn't run in 3.
-            - Use pylint --py3k against your non-test code to find things that might be problematic
-              "Manually upgrade StringIO and fix cmp and such"
-            - Upgrade your non-test code using python-modernize or future (same one you used before)
-            - Run your tests against your code in Python 2 to see if your code still functions
-            - Manually fix issues as you catch them
-            - Run pylint --py3k against your code again and carefully manually fix things it notes
-              "It will note non-issues sometimes because it doesn't know what is a problem and what isn't"
-            - Run your tests in Python 3 and manually fix upgrade issues that you haven't caught yet
-              "You'll often need to research what the bugs are at this stage"
-            - Once your code seems to be working in Python 3, run your tests with "python3 -bb" to catch places in your code where you put byte strings inside of unicode strings
-            - Upgrade to Python 3 in just 5 minutes: I promise I'm not lying to 
+            - So you're definitely going to need to fix things manually.  Here are some things to watch out for.
+            - In general you need to be explicit about the distinction between text/bytes
+            - **(click)** The built-in `open` function changed in Python 3.  You can find the new version in the `io` module in both Python 2 and Python 3.
+            - **(click)** You'll also want to add u and b prefixes to all your string literals to clarify whether they're unicode or bytes
+            - **(click)** You'll also need to convert to either io.StringIO or io.BytesIO depending on whether you're working with text or bytes
+            - **(click)** And you'll need to use the division operator consistently in both 2 and 3.
+            - **(click)** The pylint tool includes a `--py3k` flag that makes it so pylint doesn't print it's usual linting errors but instead prints out warnings about constructs that are invalid in Python 3
           </aside>
         </section>
 
       </section>
 
+        <section>
+          <h2>Python 2 to 3 Migration Cheat Sheet</h2>
+          <ol>
+            <li class="fragment">Use a guide to help you (<a href="https://portingguide.readthedocs.io">The Conservative Python 3 Porting Guide</a> or <a href="https://docs.python.org/3/howto/pyporting.html">the official porting guide</a>)</li>
+            <li class="fragment">Make sure you have a testing process</li>
+            <li class="fragment">Use an automated conversion tool (and a compatibility library) to help you</li>
+            <li class="fragment">Figure out what you need to fix</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            TODO
+          </aside>
+        </section>
+
+      <!--
       <section>
 
         <section>
@@ -710,6 +683,7 @@ $ <span class="fragment highlight-blue">futurize</span> -w my_file.py
         </section>
 
       </section>
+      -->
 
       <!-- 4 minutes -->
       <section>
