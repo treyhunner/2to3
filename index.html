@@ -269,9 +269,8 @@
             <li class="fragment">Fix bugs that arise (unicode vs bytes)</li>
           </ol>
           <aside class="notes" data-markdown>
-            - So there's not just one good answer
-            - But broadly speaking this is how you'll upgrade:
-            - **(click)** If you want to upgrade gradually, you're going to need to write your code in such a way that it will run in both Python 2 and Python 3.
+            - But broadly speaking this is what you care about:
+            - **(click)** you're going to need to write your code in such a way that it will run in both Python 2 and Python 3
             - To do this you'll need to mostly stick to features that fall within a "common subset" 2 and 3.
             - **(click)** There are some feature flags you can use to make Python 2 acts more like Python 3.
             - There are also a number of back-ported Python 3 features in Python 2's standard library
