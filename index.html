@@ -92,10 +92,11 @@
             - So I'm going to just skip over this slide
             - Because if you don't yet have a reason to upgrade to Python 3, **(click)** I'm sure you can find one **(click)**
             - **(click)**
+            - **[2 minutes]**
           </aside>
         </section>
 
-      <!-- TODO 4 minutes? -->
+      <!-- TODO 5 minutes? -->
       <section>
 
         <section>
@@ -134,7 +135,6 @@
           </aside>
         </section>
 
-        <!-- 1 minute -->
         <section>
           <h2>Gradual or Sudden Upgrading?</h2>
           <blockquote class="fragment" cite="https://youtu.be/Oiw23yfqQy8?t=19m15s">&ldquo;Originally we thought that the intersection of Python 2 and Python 3 would be unusable.  It turns out it's not so bad.&rdquo; <nobr>&mdash; Guido van Rossum</nobr>, PyCascades 2018</blockquote>
@@ -180,14 +180,15 @@
           <aside class="notes" data-markdown>
             - So during this talk we're going to be focusing on upgrading our code to Python 3 gradually
             - We'll gradually add support for Python 3 and then later drop Python 2 support
+            - **[7 minutes]**
           </aside>
         </section>
 
       </section>
 
+      <!-- TODO 6 minutes? -->
       <section>
 
-        <!-- 2 minutes? -->
         <section>
           <h2>Before we migrate we need to</h2>
           <ol>
@@ -196,22 +197,18 @@
             <li class="fragment">Start learning the differences between Python 2 and 3</li>
           </ol>
           <aside class="notes" data-markdown>
-            - We're going to talk about our upgrading strategy in a moment, but first we need to make sure we're prepared to upgrade
-            - I hope you've already done this first step, because it's the hardest part
-            - Before you upgrade, you need to make sure you have a solid test process for your code
-            - You are almost certainly going to introduce bugs into your code while upgrading
-            - If you have a testing process, you can catch those bugs before they go live
-            - It doesn't matter whether your testing process is manual or automated, but it needs to be **repeatable** and **thorough**
-            - Alright, so that's probably the hardest step to upgrading
-            - Next you should make sure that you only support recent versions of Python.
+            - Before we can upgrade, we need to make sure we're prepared
+            - This first step is the hardest one, but you might have already done it.
+            - Before upgrading, you need to have a solid test process for your code
+            - Whether manual or automated, your test process needs to be **repeatable** and **thorough**
+            - That's the hardest step
+            - Next you need to make sure that you only support recent versions of Python.
             - It's hard to support older versions of Python 2 at the same time as Python 3.  The newer the version of Python 2 that you're on, the easier things get
             - And lastly you'll want to start learning about the differences between 2 and 3 as you upgrade
             - During this process you'll be diving deep into Python 2 and 3 compatibility land.  It's best to start learning the basics now.
-            <!-- TODO move to later I do want to note that while code review is sometimes valued over good tests, in this case code review is definitely not a replacement for a good testing process.  Unless you understand every single difference between Python 2 and Python 3, you're going to have a really hard time determining whether code will break by looking at it in a code review. -->
           </aside>
         </section>
 
-        <!-- 2 minutes? -->
         <section>
           <h2>What's our strategy?</h2>
           <ol>
@@ -235,7 +232,6 @@
           </aside>
         </section>
 
-        <!-- 2 minutes -->
         <section data-background="#ffffff" data-background-image="gummy-snake.jpg" data-background-size="cover" data-background-repeat="no-repeat" data-background-position="center" data-state="no-controls" class="no-controls">
           <aside class="notes" data-markdown>
             - Let's say you're at the PyLadies auction at PyCon 2015 and you're trying to split up 34,000 calorie gummy Python to distribute pieces of it to a room full of Python developers
@@ -245,7 +241,6 @@
           </aside>
         </section>
 
-        <!-- 4 minutes -->
         <section>
           <h2>Which way will you slice this?</h2>
           <ul>
@@ -269,7 +264,6 @@
           </aside>
         </section>
 
-        <!-- 2 minutes -->
         <section>
           <h2>Achieving Python 2/3 compatibility</h2>
           <ol>
@@ -290,11 +284,13 @@
             - **(click)** You can a compatibility library help you bridge the gap between 2 and 3
             - **(click)** Python 3 requires you to be a lot more explicit about some things.  For example you have to careful to separate text and binary data whereas Python 2 allowed you to be a little more sloppy when it comes to working with data.
             - So even after all of this, you're still going to have to manually fix some things.
+            - **[13 minutes]**
           </aside>
         </section>
 
       </section>
 
+      <!-- TODO 3 minutes -->
       <section>
 
         <section>
@@ -364,12 +360,13 @@ def save_tabbed_data_as_csv(url, filename):
            - Now most of the things in that Python 3 are available in Python 2
            - **(click)** But not all of them
            - So to handle those libraries and features that are fundamentally different between Python 2 and Python 3...
+            - **[16 minutes]**
           </aside>
         </section>
 
       </section>
 
-      <!-- 4 minutes -->
+      <!-- TODO 4 minutes -->
       <section>
 
         <section>
@@ -489,12 +486,13 @@ from urllib.request import urlopen
             - **(click)** You can also use `future` to shim in aliases to Python 3 features into the Python 2 standard library instead
             - This is *really* cool because this means when we drop Python 2 support...
             - **(click)** We can just delete those aliases
+            - **[20 minutes]**
           </aside>
         </section>
 
       </section>
 
-      <!-- 3 minutes -->
+      <!-- TODO 2 minutes -->
       <section>
 
         <section>
@@ -516,7 +514,6 @@ from urllib.request import urlopen
           </aside>
         </section>
 
-        <!-- 1 minute -->
         <section>
           <h2>Running modernize and futurize</h2>
           <pre class="bash fragment"><code data-trim data-noescape>
@@ -538,7 +535,6 @@ $ <span class="fragment highlight-blue">futurize</span> -w my_file.py
           </aside>
         </section>
 
-        <!-- 1 minute -->
         <section>
           <h2>The automated tools are pretty smart</h2>
           <ul>
@@ -553,12 +549,13 @@ $ <span class="fragment highlight-blue">futurize</span> -w my_file.py
             - **(click)** And in general they handle a lot of syntactic changes really well
             - **(click)** Both futurize and modernize will try to automatically fix uses of deprecated and moved standard library modules
             - **(click)** And the behavior changes of map, filter, zip, and range are often handled pretty well too
+            - **[22 minutes]**
           </aside>
         </section>
 
       </section>
 
-      <!-- 8 minutes -->
+      <!-- 4 minutes -->
       <section>
 
         <section>
@@ -631,11 +628,13 @@ $ <span class="fragment highlight-blue">futurize</span> -w my_file.py
             - **(click)** You'll also need to convert to either io.StringIO or io.BytesIO depending on whether you're working with text or bytes
             - **(click)** And you'll need to use the division operator consistently in both 2 and 3.
             - **(click)** The pylint tool includes a `--py3k` flag that makes it so pylint doesn't print it's usual linting errors but instead prints out warnings about constructs that are invalid in Python 3
+            - **[26 minutes]**
           </aside>
         </section>
 
       </section>
 
+        <!-- TODO 1 minute -->
         <section>
           <h2>Python 2 to 3 Migration Cheat Sheet</h2>
           <ol>
@@ -645,7 +644,8 @@ $ <span class="fragment highlight-blue">futurize</span> -w my_file.py
             <li class="fragment">Figure out what you need to fix</li>
           </ul>
           <aside class="notes" data-markdown>
-            TODO
+            - TODO
+            - **[27 minutes]**
           </aside>
         </section>
 
@@ -685,7 +685,7 @@ $ <span class="fragment highlight-blue">futurize</span> -w my_file.py
       </section>
       -->
 
-      <!-- 4 minutes -->
+      <!-- TODO 3 minutes -->
       <section>
 
         <section>
@@ -742,6 +742,7 @@ $ <span class="fragment highlight-blue">futurize</span> -w my_file.py
               - Python 3 doesn't have a print statement.  Instead there's a print function which is much more flexible. **(click)**
               - And Python 3 requires strict ordering of objects. **(click)**
               - In Python 2, loose ordering was a bug waiting to happen.
+            - **[30 minutes]**
           </aside>
         </section>
 
