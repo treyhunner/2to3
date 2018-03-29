@@ -96,7 +96,35 @@
           </aside>
         </section>
 
-      <!-- TODO 5 minutes? -->
+        <!-- TODO talk about differences between 2 and 3 briefly (including print, / and //, etc.) -->
+        <section>
+          <h2>Differences Between 2 and 3</h2>
+           <pre class="python"><code data-trim data-noescape>
+<span class="fragment">>>> print "hello"  # Python 2
+hello</span>
+<span class="fragment">>>> print("hello")  # Python 3
+hello</span>
+<span class="fragment">>>> from urllib2 import urlopen  # Python 2</span>
+<span class="fragment">>>> from urllib.request import urlopen  # Python 3</span>
+<span class="fragment">>>> urlopen('http://pseudorandom.name').read()  # Python 2
+'Judy Corona\n'</span>
+<span class="fragment">>>> urlopen('http://pseudorandom.name').read()  # Python 3
+b'Judy Corona\n'</span>
+<span class="fragment">>>> list(b'hello')
+['h', 'e', 'l', 'l', 'o']</span>
+<span class="fragment">>>> list(b'hello')
+[104, 101, 108, 108, 111]</span>
+<span class="fragment">>>> 5 / 2  # Python 2
+2</span>
+<span class="fragment">>>> 5 / 2  # Python 3
+2.5</span>
+          </code></pre>
+         <aside class="notes" data-markdown>
+           - TODO
+          </aside>
+        </section>
+
+      <!-- TODO 4 minutes? -->
       <section>
 
         <section>
