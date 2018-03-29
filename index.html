@@ -164,42 +164,17 @@ b'Judy Corona\n'</span>
         </section>
 
         <section>
-          <h2>Gradual or Sudden Upgrading?</h2>
-          <blockquote class="fragment" cite="https://youtu.be/Oiw23yfqQy8?t=19m15s">&ldquo;Originally we thought that the intersection of Python 2 and Python 3 would be unusable.  It turns out it's not so bad.&rdquo; <nobr>&mdash; Guido van Rossum</nobr>, PyCascades 2018</blockquote>
-          <aside class="notes" data-markdown>
-            - So we need to decide whether we're taking the sudden approach or the gradual approach to migrating our code
-            - **(click)** At PyCascades this year Guido said that the Python core developers originally thought that the intersection of Python 2 and 3 would be pretty much unusable.
-            - That is definitely not the case today.
-          </aside>
-        </section>
-
-        <section>
-          <h2>Migrating: it used to be even harder</h2>
-          <ul>
-            <li class="fragment">Writing code that ran the same way in both Python 2 and Python 3 was nearly impossible</li>
-            <li class="fragment">Now it's "not so bad" to write code that runs in both in both Python 2 and Python 3</li>
-            <li class="fragment">We have tools to help us upgrade our code to work in both Python 2 and Python 3</li>
-          </ul>
-          <aside class="notes" data-markdown>
-            - **(click)** It used to be pretty much impossible to write one set of code that would run in both Python 2 and Python 3.
-            - **(click)** But in recent versions of Python 3, the core developers made it much easier to write code that would run the same way in both languages
-            - **(click)** And now we even have some pretty decent automated tools to help do that
-            - So back to our approach...
-          </aside>
-        </section>
-
-        <section>
-          <h2>Gradual upgrades are easiest</h2>
+          <h2>Gradual is best for active code</h2>
           <ul>
             <li class="fragment">Sudden upgrades used to be the only way</li>
             <li class="fragment">Sudden upgrades can be really tricky</li>
-            <li class="fragment">I recommend gradual upgrades</li>
+            <li class="fragment">I recommend gradual upgrades for non-stagnant code</li>
           </ul>
           <aside class="notes" data-markdown>
             - **(click)** The Python community used to recommend sudden upgrades because early versions of Python 3 were so incompatible with Python 2, that you couldn't even really upgrade gradually
-            - **(click)** But sudden upgrades can cause a lot of bugs in your code and they can sometimes put your development cycle on pause for a really long time
+            - **(click)** But upgrading can sometimes put your development cycle on pause for a really long time
             - **(click)** So while sudden upgrades used to be recommended, gradual upgrades are usually more often recommended today
-            - And gradual upgrades are also what I recommend
+            - And gradual upgrades are also what I recommend unless you have a code base that doesn't change anymore
           </aside>
         </section>
 
@@ -208,6 +183,7 @@ b'Judy Corona\n'</span>
           <aside class="notes" data-markdown>
             - So during this talk we're going to be focusing on upgrading our code to Python 3 gradually
             - We'll gradually add support for Python 3 and then later drop Python 2 support
+            - I'll briefly talk about sudden migrations at the end
             - **[7 minutes]**
           </aside>
         </section>
@@ -258,32 +234,6 @@ b'Judy Corona\n'</span>
             - So these are the high level steps to upgrading
             - **(pause)**
             - Is everyone ready or a bad metaphor?
-          </aside>
-        </section>
-
-        <section>
-          <h2>Which way will you slice this?</h2>
-          <ul>
-            <li class="fragment">Upgrade in stages (update then port)?</li>
-            <li class="fragment">Don't upgrade in stages?</li>
-            <li class="fragment">Upgrade file-by-file?</li>
-            <li class="fragment">Upgrade feature-by-feature?</li>
-            <li class="fragment">Use automated tools for everything, rely on your tests?</li>
-            <li class="fragment">Handle buggy things like unicode/bytes manually?</li>
-          </ul>
-          <aside class="notes" data-markdown>
-            - **(click)** The Internet has lots of advice on upgrading
-            - **(click)** I'm not going to talk about any of it **(click)**
-            - **(click)** Because there's no one right answer to how to upgrade **(click)**
-            - **(click)** There's lots of ways to upgrade
-          </aside>
-        </section>
-
-        <section data-background="#ffffff" data-background-image="gummy-snake.jpg" data-background-size="cover" data-background-repeat="no-repeat" data-background-position="center" data-state="no-controls" class="no-controls">
-          <h1 class="fragment" style="color: #0ff;">There's lots of ways to slice it</h1>
-          <aside class="notes" data-markdown>
-            - Just like slicing up a 34,000 calorie gummy snake...
-            - **(click)** There are also lots ways to do an upgrade from Python 2 to Python 3
           </aside>
         </section>
 
