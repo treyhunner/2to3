@@ -532,9 +532,12 @@ $ <span class="fragment highlight-blue">futurize</span> -w my_file.py
 
         <section>
           <h2>Things you'll need to fix manually</h2>
-          <!--<ul>
-            <li>TODO dummy LIs with same contents but are hidden?</li>
-          </ul>-->
+          <ul style="visibility: hidden;">
+            <li>Python 2's <code>StringIO</code> split into <code>io.StringIO</code> for text and <code>io.BytesIO</code> for bytes</li>
+            <li>Using <code>open()</code> built-in with text data (Python 3's open lives in <code>io.open</code> in Python 2)</li>
+            <li><code>5/2 == 2</code> in Python 2 but <code>5/2 == 2.5</code> in Python 3</li>
+            <li>Some things don't exist in the same form (<code>cmp</code> function)</li>
+          </ul>
           <aside class="notes" data-markdown>
             - Unfortunately the automated conversion tools can't handle everything
             - Before I explain why, we need to talk about unicode
