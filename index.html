@@ -609,6 +609,20 @@ $ <span class="fragment highlight-blue">futurize</span> -w my_file.py
 
       </section>
 
+        <section>
+          <h2>What about sudden migrations?</h2>
+          <ul>
+            <li class="fragment">Fork your Python 2 version and don't change it anymore</li>
+            <li class="fragment">You shouldn't need a compatibility library</li>
+            <li class="fragment">You could use <code>2to3</code> <span class="fragment">(I've never used it, good luck!)</span></li>
+            <li class="fragment">You still need to manually fix all the same things (like unicode/bytes issues and division issues)</li>
+            <li class="fragment">You still need a solid testing process</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            - TODO in theory, it's really not too different except that your code will be a little bit prettier immediately after this migration hopefully
+          </aside>
+        </section>
+
         <!-- TODO 1 minute -->
         <section>
           <h2>Python 2 to 3 Migration Cheat Sheet</h2>
