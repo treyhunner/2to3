@@ -35,7 +35,10 @@
           <small><a href="http://treyhunner.com" rel="author">Trey Hunner</a> / <a href="https://twitter.com/treyhunner">@treyhunner</a></small>
           </p>
           <aside class="notes" data-markdown>
-            Hello!  Who is using Python 3 already?  Who is *excited* about upgrading to Python 3?  Who's upgrading because you have to?
+            - Hello!  Who is using Python 3 already?  Who is *excited* about upgrading to Python 3?  Who's upgrading because you have to?
+            - So this is a very large and scary topic and I have enough time to barely touch the surface of most of the things we're going to discuss
+            - So my **goal** is to give you a taste for what using Python 3 is like and what's like to upgrade while also nudging you in the right direction so that you can take a *deeper* look at all this when you actually upgrade
+            - I'm going to gloss over *a lot* of things, so don't expect to understand everything I'm doing deeply.  This is the start of your research, not the end.
           </aside>
         </section>
 
@@ -71,7 +74,7 @@
             - I'm also one of the co-organizers of my local Python meetup in San Diego
             - I've helped organize four Django Girls workshops in Southern California
             - And I'm also one of the 11 directors at the Python Software Foundation
-            - That's a bit about me... now let's talk about looping
+            - That's a bit about me... let's talk about Python
           </aside>
         </section>
 
@@ -88,6 +91,7 @@
             - There's lots of good reasons to upgrade **(click)**
             - But *we* are going to focus on the exciting reasons to upgrade **(click)**
             - So let's look at what you've been *missing out* on by *not* using Python 3
+            - **[2 minutes]**
           </aside>
         </section>
 
@@ -110,8 +114,8 @@
             - Python 3 has lots of new syntax, most of which you can't even opt into in Python 2
             - In Python 3, **(click)** you can use underscores in numeric literals to make them easier to read
             - It's easy to see here that we have 1 million and 10 million
-            - Python 3 also includes a lot more generalizations for the `*` and `**` operators
-            - **(click)** For example you can use `*` in multiple assignment now
+            - Python 3 also includes a lot more generalizations for the `\*` and `\*\*` operators
+            - **(click)** For example you can use `\*` in multiple assignment now
             - **(click)** Or even when you're constructing a list
             - Also Python 2's print statement **(click)** turned into print function in Python 3, which is a lot more powerful and flexible than the old print statement ever was
             - Python 3 also has a new string formatting syntax **(click)**, called f-strings, that are a pretty big leap up over the old string formatting syntaxes from Python 2
@@ -289,6 +293,7 @@ class ComparableDict(UserDict):
             - It's pretty much the same thing... but even more
             - Python 3 is more consistent than Python 2 and feels more natural
             - It feels more like how Python *should* have been all along
+            - **[7 minutes]**
           </aside>
         </section>
 
@@ -306,9 +311,9 @@ class ComparableDict(UserDict):
           </ul>
           <aside class="notes" data-markdown>
             - We're going to need to choose between a few different approaches to upgrading our code
-              - **(click)** The gradual approach is to add support for Python 3 and then eventually drop Python 2 support at some point in the future.  This means writing code in such a way that it can run in *both* Python 2 and Python 3 at the same time.
-              - **(click)** The sudden approach to upgrading involves upgrading your entire codebase to Python 3 at once without worrying about supporting Python 2 at the same time.  This requires dropping Python 2 support during your upgrade process.
-              - **(click)** The extreme approach to upgrading is to rewrite your entire codebase in Python 3.  If you have a really small codebase, this isn't necessary the worst idea.  We're not going to talk about that approach at all though.
+            - **(click)** The gradual approach is to add support for Python 3 and then eventually drop Python 2 support at some point in the future.  This means writing code in such a way that it can run in *both* Python 2 and Python 3 at the same time.
+            - **(click)** The sudden approach to upgrading involves upgrading your entire codebase to Python 3 at once without worrying about supporting Python 2 at the same time.  This requires dropping Python 2 support during your upgrade process.
+            - **(click)** The extreme approach to upgrading is to rewrite your entire codebase in Python 3.  If you have a really small codebase, this isn't necessary the worst idea.  We're not going to talk about that approach at all though.
           </aside>
         </section>
 
@@ -325,8 +330,9 @@ class ComparableDict(UserDict):
             - If your code base doesn't change anymore, sudden migrations are pretty great
             - **(click)** But if you *do* need to keep shipping code, I'd recommend a gradual migration process
             - Migrating gradually allows you to slowly migrate pieces of your code over time, without losing a big chunk of time all at once
-            - So I'm going to talk first about migrating to Python 3 gradually
+            - So I'm going to focus **(click)** on migrating your code gradually so you can keep shipping code as you migrate
             - We'll gradually *add* support for Python 3 and then only *later* drop support for Python 2
+            - **[9 minutes]**
           </aside>
         </section>
 
@@ -439,6 +445,7 @@ print(" ".join(name))
               - **(click)** modernize
               - **(click)** and futurize
             - I'm going to compare these tools *very* briefly but the ones I personally recommend using are **(click)** future and futurize **(click)**
+            - **[12 minutes]**
           </aside>
         </section>
 
@@ -479,10 +486,10 @@ install_aliases()</span>
             - Or we can do a very similar import statement with *future* **(click)**
             - These compatibility libraries do a lot of the ugly version checking work behind the scenes for us
             - The reason I recommend *future* in particular is that it *can* be used the same way as six, or it can go a step further
-            - And monkey patch the Python 2 standard library to work pretty much like the Python 3 standard library
-            - This allows us to use the Python 3 version of urllib while we're *still in Python 2*
+            - **(click)** And monkey patch the Python 2 standard library to work pretty much like the Python 3 standard library
+            - This allows us to use the Python 3 version of urllib **(click)** while we're *still in Python 2*
             - This is *really* cool because this means when we drop Python 2 support...
-            - **(click)** We can just delete the lines that say `install_aliases`
+            - **(click)** We can just delete those first couple lines
             - And our code continues to work the way it should in Python 3
           </aside>
         </section>
@@ -491,77 +498,9 @@ install_aliases()</span>
           <h3>The future library encourages Python 3 idioms</h3>
           <aside class="notes" data-markdown>
             - So I recommend the future library because it encourages you to embrace Python 3 during this migration process... and that's going to make cleaning up your code a *lot* easier after you're done
+            - **[14 minutes]**
           </aside>
         </section>
-
-        <!--
-        <section>
-          <h2>Compatibility Issues</h2>
-          <pre class="python"><code data-trim data-noescape>
-def hex_sub(hex_string):
-    return <span class="fragment highlight-current-blue">unichr</span>(int(hex_string[1:], 16))
-          </code></pre>
-          <pre class="python"><code data-trim data-noescape>
-def hex_sub(hex_string):
-    return <span class="fragment highlight-current-blue">chr</span>(int(hex_string[1:], 16))<span class="fragment"></span>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - We need to start with a difference between Python 2 and Python 3 first
-            - If you want to convert an integer to a unicode character in Python 2, you could use a function spelled **(click)** **unichr**
-            - If you wanted to do the same thing in Python 3, you have to use the **(click)** **chr** function instead
-            - **(click)** The `chr` function *did* exist in Python 2 but it did something different
-          </aside>
-        </section>
-
-        <section>
-          <h4 class="fragment" data-fragment-index="1">six</h4>
-          <pre class="python fragment" data-fragment-index="1"><code data-trim>
-from six import unichr
-
-def hex_sub(hex_string):
-    return unichr(int(hex_string[1:], 16))
-          </code></pre>
-          <h4 class="fragment" data-fragment-index="3">future</h4>
-          <pre class="python fragment" data-fragment-index="3"><code data-trim data-noescape>
-<span class="fragment fade-out" data-fragment-index="5">from builtins import chr</span>
-
-def hex_sub(hex_string):
-    return chr(int(hex_string[1:], 16))
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - If you want to support both Python 2 and 3 we can use either six or future
-            - With `six` we'll continue using the name `unichr` just like we did in Python 2 **(click)**
-            - But with future we can start embracing the Python 3 way of doing things **(click)**
-            - Python 3 has a `builtins` module which means this code runs in Python 3 even if `future` isn't installed
-            - And it runs in Python 2 because `future` includes a backport of the `builtins` module that comes bundled with Python 3
-            - When we eventually drop support for Python 2, we don't *have* to change this code
-            - **(click)** But we could decide to remove that `builtins` import import to clean it up one day
-          </aside>
-        </section>
-
-        <section>
-          <h2>future is flexible</h2>
-          <pre class="python"><code data-trim>
-from builtins import chr
-
-def hex_sub(hex_string):
-    return chr(int(hex_string[1:], 16))
-          </code></pre>
-          <pre class="python fragment"><code data-trim>
-from past.builtins import unichr
-
-def hex_sub(hex_string):
-    return unichr(int(hex_string[1:], 16))
-          </code></pre>
-          <aside class="notes" data-markdown>
-            - One thing I want to mention here for completeness is that `future` includes both back-ported functionality, like that `chr` function in `builtins`
-            - **(click)** And forward-ported functionality
-            - Here we're importing from `past.builtins` to get an equivalent of the old Python 2 builtins in Python 3
-            - So we can do things the new Python 3 way but if for any reason we need to continue doing things the old Python 2 way, we could
-            - In the `future` library, the old builtins are forward-ported and the new builtins are back-ported
-          </aside>
-        </section>
-        -->
 
       </section>
 
@@ -582,7 +521,8 @@ def hex_sub(hex_string):
             - one of these tools is called **(click)** `modernize` and it relies on `six`
             - **(click)** the other tool is called `futurize` and it relies on `future`
             - In fact, `futurize` is actually just a command-line tool that comes bundled with `future`
-            - There is *another* automated conversion tool called 2to3 and it's actually built-in right into Python
+            - There is *another* automated conversion tool... **(click)**
+            - it's called 2to3 and it's actually built-in right into Python
             - 2to3 tries to upgrade your code to Python 3 while dropping support for Python 2 all at once... **(click)** so we can't use it for gradual migrations
             - I focused on the `future` library before and I'll focus on the **(click)** `futurize` conversion tool right now
           </aside>
@@ -605,7 +545,7 @@ for n in <span class="fragment bold">range</span>(3):
          <aside class="notes" data-markdown>
            - This is Python 2 code
            - This code *will not* work on Python 3
-           - **(click)** `__nonzero__` was renamed in Python 3
+           - **(click)** `\_\_nonzero\_\_` was renamed in Python 3
            - **(click)** `range` objects work differently (although that doesn't actually matter here)
            - And Python 3 doesn't have a **(click)** `print` statement
            - If we run this code through futurize, it'll make this
@@ -632,17 +572,18 @@ for n in <span class="fragment bold-current" data-fragment-index=3>range</span>(
 
           </code></pre>
          <aside class="notes" data-markdown>
-           - **(click)** `futurize` renamed `__nonzero__` to `__bool__`
-           - which actually still works in both Python 2 because of this fancy `builtins.object` **(click)** class that includes compatibility code to make `__bool__` work even in Python 2
+           - **TODO** improve these notes
+           - **(click)** `futurize` renamed `\_\_nonzero\_\_` to `\_\_bool\_\_`
+           - which actually still works in both Python 2 because of this fancy `builtins.object` **(click)** class that includes compatibility code to make `\_\_bool\_\_` work even in Python 2
            - Also note that this **(click)** `range` object is the Python 3 version because we're importing it from `builtins` in Python 2 as well
            - **(click)** And the print statement was turned into a print function
            - *(pause)*
-           - That `__future__` thing is something the core developers added to Python 2 to allow opting in to certain big and important Python 3 features before you upgrade
+           - That `\_\_future\_\_` thing is something the core developers added to Python 2 to allow opting in to certain big and important Python 3 features before you upgrade
            - **(click)** These `builtins` things are something different though
            - The `future` library includes a `builtins` library *with* it to allow Python 2 code to use the Python 3 built-ins
            - It's called `builtins` because Python 3 already *has* a `builtins` library that's equivalent to this **(click)**
            - So when we eventually drop support for Python 2 and stop using `future`, we don't actually have to change any of this code
-           - But we could eventually clean it up by removing these working but *unnecessary* imports statements
+           - But we could eventually clean it up by removing **(click)** all these *unnecessary* imports statements from the top of our file
            - So using an automated conversion tool can be **really** helpful
           </aside>
         </section>
@@ -655,9 +596,10 @@ for n in <span class="fragment bold-current" data-fragment-index=3>range</span>(
         <section>
           <h2>You'll still need to fix things manually</h2>
           <aside class="notes" data-markdown>
-            - But they won't solve all your problems
+            - But these tools aren't flawless
             - You're still going to need to fix certain bugs manually
             - I'll explain why with an example
+            - **[20 minutes]**
           </aside>
         </section>
 
@@ -698,18 +640,19 @@ def save_tabbed_data_as_csv(url, filename):
     <span class="fragment bold-current" data-fragment-index=6><span class="fragment bold-current" data-fragment-index=8>csv.writer</span></span>(csv_file).writerows(reader)<span class="fragment bold-current" data-fragment-index=9></span>
           </code></pre>
          <aside class="notes" data-markdown>
+           - **TODO** improve these notes
            - So that they use the new Python 3 versions of these libraries:
-            - **(click)** `urllib.request`
-            - and **(click)** `io`
-            - And **(click)** it monkey patches the standard library so that these imports work even in Python 2
-            - There's a problem with this code though... it no longer works in either Python 2 or Python 3
-            - One problem is that **(click)** `urlopen` gives us bytes back
-            - But **(click)** `io.StringIO` expects unicode
-            - Also the `csv` `reader` **(click)** and `writer` objects will not work with bytes in Python 3
-            - But we're opening our output file **(click)** in bytes mode
-            - Which Python 3's `csv.writer` **(click)** object is not going to be happy about
-            - So... after we've run our automated conversion tool, **(click)*8 we still need to fix this code manually
-            - We can do... that like this...
+             - **(click)** `urllib.request`
+             - and **(click)** `io`
+           - And **(click)** it monkey patches the standard library so that these imports work even in Python 2
+           - There's a problem with this code though... it no longer works in either Python 2 or Python 3
+           - One problem is that **(click)** `urlopen` gives us bytes back
+           - But **(click)** `io.StringIO` expects unicode
+           - Also the `csv` `reader` **(click)** and `writer` objects will not work with bytes in Python 3
+           - But we're opening our output file **(click)** in bytes mode
+           - Which Python 3's `csv.writer` **(click)** object is not going to be happy about
+           - So... after we've run our automated conversion tool, **(click)** we still need to fix this code manually
+           - We can do... that like this...
           </aside>
         </section>
 
@@ -728,6 +671,7 @@ def save_tabbed_data_as_csv(url, filename):
     csv.writer(csv_file).writerows(reader)<span class="fragment" data-fragment-index=6></span>
           </code></pre>
          <aside class="notes" data-markdown>
+           - **TODO** improve these notes
            - Here we're **(click)** decoding the byte string we get back from urlopen
            - So that **(click)** `io.StringIO` will be happy
            - And then we're opening up our output file in **(click)** text mode
@@ -743,9 +687,11 @@ def save_tabbed_data_as_csv(url, filename):
           <h2>The automated conversion tools won't solve all your problems</h2>
           <h3 class="fragment">You'll still need to fix code manually</h3>
           <aside class="notes" data-markdown>
+            - **TODO** fix the pacing/transition here?
             - The automated conversion tools are not a magic wand
             - They'll push you in the right direction
             - **(click)** but you'll still need to fix some things manually
+            - *(pause)*
             - You may have noticed that every bug I just showed you, had to do with *one* **big** issue
             - and it's a pretty issue when migrating from 2 to 3
           </aside>
@@ -765,7 +711,9 @@ def save_tabbed_data_as_csv(url, filename):
             - So a lot of the ambiguities that the automated conversion tools can't handle are due to this distinction between text and bytes and the fact that Python 2 was sloppy about requiring this distinction
             - Because Python 3 requires distinguish between bytes and unicode but Python 2 doesn't, **(click)** you cannot unambiguously convert arbitrary Python 2 code into Python 3 code
             - And if the meaning of your code is ambiguous, the automated tools aren't always going to guess how to do the right thing
-            - Ned Batchelder has a great talk on unicode that I'd recommend called Pragmatic Unicode.  I'll link to that again at the end of this talk
+            - Ned Batchelder has **(click)** a great talk on unicode that I'd recommend called Pragmatic Unicode.
+            - While I'm mentioning links to refer to during this process, let me mention a few more...
+            - **[24 minutes]**
           </aside>
         </section>
 
@@ -781,7 +729,12 @@ def save_tabbed_data_as_csv(url, filename):
             <li><a href="https://nedbatchelder.com/text/unipain.html">Pragmatic Unicode</a></li>
           </ol>
           <aside class="notes" data-markdown>
-            - TODO
+            - The conservative Python 3 porting guide was written by some folks at Redhat I believe and it's a guide for folks who are upgrading not *because* they want the shiny new Python 3 features but because they have to update to continue receiving support
+            - The Python documentation has an official porting guide from 2 to 3.  It's targeted at third-party projects which need to support both 2 and 3, but you could use it when migrating gradually also
+            - The book Supporting Python 3 is free online.  It's a little older and focuses more on sudden migrations, but it has some things in it that will be useful to consider regardless of the migration approach you take
+            - Migrating Python 2 to 3 is a Pluralsight course by Anthony Shaw.  It's very new and it also focuses on future and futurize
+            - And the talk Pragmatic Unicode by Ned Batchelder is something you should watch regardless of whether you upgrade
+            - **[25 minutes]**
           </aside>
         </section>
 
@@ -804,6 +757,7 @@ def save_tabbed_data_as_csv(url, filename):
             - **(click)** you're still going to have to manually fix things though because 2to3 isn't any more magical than modernize or futurize
             - **(click)** And you *definitely* still need a testing process for your code
             - Migrating to Python 3 is hard regardless of whether you're doing it suddenly or gradually
+            - **[27 minutes]**
           </aside>
         </section>
 
