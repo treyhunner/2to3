@@ -353,3 +353,66 @@ section.has-dark-background a:hover {
 .col {
   flex: 1;
 }
+
+
+/* Python 2 maintenance text CSS */
+#DIV_1 {
+    box-sizing: border-box;
+    color: rgb(68, 68, 68);
+    text-decoration: none solid rgb(68, 68, 68);
+    text-align: left;
+    width: 700px;
+    margin: auto;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    column-rule-color: rgb(68, 68, 68);
+    caret-color: rgb(68, 68, 68);
+    border: 0px none rgb(68, 68, 68);
+    font: normal normal 400 normal 30px / 48.75px SourceSansProRegular, Arial, sans-serif;
+    outline: rgb(68, 68, 68) none 0px;
+}/*#DIV_1*/
+
+#H1_2 {
+    box-sizing: border-box;
+    color: rgb(55, 118, 171);
+    text-decoration: none solid rgb(55, 118, 171);
+    text-rendering: optimizeLegibility;
+    column-rule-color: rgb(55, 118, 171);
+    caret-color: rgb(55, 118, 171);
+    border: 0px none rgb(55, 118, 171);
+    font: normal normal 400 normal 52.5px / 52.5px SourceSansProBold, Arial, sans-serif;
+    margin: 52.5px 0px 13.125px;
+    outline: rgb(55, 118, 171) none 0px;
+}/*#H1_2*/
+
+#A_3 {
+    box-sizing: border-box;
+    color: rgb(55, 118, 171);
+    text-decoration: none solid rgb(55, 118, 171);
+    text-rendering: optimizeLegibility;
+    column-rule-color: rgb(55, 118, 171);
+    perspective-origin: 0px 0px;
+    transform-origin: 0px 0px;
+    caret-color: rgb(55, 118, 171);
+    border-top: 0px none rgb(55, 118, 171);
+    border-right: 0px none rgb(55, 118, 171);
+    border-bottom: 1px solid rgb(255, 223, 118);
+    border-left: 0px none rgb(55, 118, 171);
+    font: normal normal 400 normal 52.5px / 52.5px SourceSansProBold, Arial, sans-serif;
+    outline: rgb(55, 118, 171) none 0px;
+}/*#A_3*/
+
+#P_4 {
+    box-sizing: border-box;
+    color: rgb(68, 68, 68);
+    text-decoration: none solid rgb(68, 68, 68);
+    text-rendering: optimizeLegibility;
+    column-rule-color: rgb(68, 68, 68);
+    perspective-origin: 197.491px 56px;
+    transform-origin: 197.491px 56px;
+    caret-color: rgb(68, 68, 68);
+    border: 0px none rgb(68, 68, 68);
+    font: normal normal 400 normal 30px / 56.25px SourceSansProRegular, Arial, sans-serif;
+    margin: 0px 0px 39.375px;
+    outline: rgb(68, 68, 68) none 0px;
+}/*#P_4*/

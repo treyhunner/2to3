@@ -80,20 +80,54 @@
 
       </section>
 
+      <section>
+
+        <!-- 1 minute -->
+        <section data-background="#fff">
+          <div id="DIV_1">
+            <h1 id="H1_2">
+              <a href="#id4" id="A_3">Maintenance releases</a>
+            </h1>
+            <p id="P_4">
+              Being <span class="fragment highlight-blue">the last of the 2.x series</span>, 2.7 will have an extended period of maintenance. Specifically, 2.7 will receive bugfix support until <span class="fragment highlight-red">January 1, 2020</span>. All 2.7 development work <span class="fragment highlight-red">will cease in 2020</span>.
+            </p>
+          </div>
+          <aside class="notes" data-markdown>
+            - Python 2 hasn't had many new features in a long time **(click)**
+            - Python 2 is still a *great* programming language
+            - But...
+            - There are *a lot* of good reasons **(click)** to upgrade from Python 2 **(click)** to Python 3
+            - If you don't think you have a reason to upgrade...
+          </aside>
+        </section>
+
+        <!-- 1 minute -->
+        <section data-background="lightyellow">
+          <iframe src="http://pythonclock.org/" width="100%" height="400px"></iframe>
+          <aside class="notes" data-markdown>
+            - You'll probably find one soon...
+            - *(pause)*
+            - Some reasons are good from a technical standpoint
+          </aside>
+        </section>
+
         <!-- 1 minute -->
         <section>
           <span class="fragment strike" data-fragment-index=3>
           <h1>Python 2 <span class="fragment" data-fragment-index=1>End of Life</span></h1>
-          <h2 class="fragment" data-fragment-index=2>1 year, 7 months, and 20 days</h2>
+          <h2 class="fragment" data-fragment-index=2>January 1, 2020</h2>
           </span>
           <aside class="notes" data-markdown>
-            - If you don't think you have a reason to upgrade to Python 3 **(click)**, you can probably find one
-            - There's lots of good reasons to upgrade **(click)**
-            - But *we* are going to focus on the exciting reasons to upgrade **(click)**
-            - So let's look at what you've been *missing out* on by *not* using Python 3
+            - And some **(click)** just make good business sense **(click)**
+            - In this talk, we are *not* going to focus on the *necessary* reasons to upgrade
+            - You'll eventually find those on your own **(click)**
+            - We're going to focus on the exciting reasons to upgrade
+            - So let's look at what you've been *missing out* on so far by **not** using Python 3
             - **[2 minutes]**
           </aside>
         </section>
+
+      </section>
 
       <!-- 5 minutes -->
       <section>
@@ -290,7 +324,7 @@ class ComparableDict(UserDict):
           <aside class="notes" data-markdown>
             - ...
             - You'll probably love Python 3 **(click)**
-            - It's pretty much the same thing... but even more
+            - It's pretty much the same thing... but with even more of the good stuff
             - Python 3 is more consistent than Python 2 and feels more natural
             - It feels more like how Python *should* have been all along
             - **[7 minutes]**
@@ -546,7 +580,7 @@ for n in <span class="fragment bold">range</span>(3):
            - This is Python 2 code
            - This code *will not* work on Python 3
            - **(click)** `\_\_nonzero\_\_` was renamed in Python 3
-           - **(click)** `range` objects work differently (although that doesn't actually matter here)
+           - **(click)** `range` objects work differently (although that actually doesn't matter much in this case)
            - And Python 3 doesn't have a **(click)** `print` statement
            - If we run this code through futurize, it'll make this
           </aside>
@@ -572,19 +606,20 @@ for n in <span class="fragment bold-current" data-fragment-index=3>range</span>(
 
           </code></pre>
          <aside class="notes" data-markdown>
-           - **TODO** improve these notes
+           - **TODO** continue improving these notes?
            - **(click)** `futurize` renamed `\_\_nonzero\_\_` to `\_\_bool\_\_`
            - which actually still works in both Python 2 because of this fancy `builtins.object` **(click)** class that includes compatibility code to make `\_\_bool\_\_` work even in Python 2
-           - Also note that this **(click)** `range` object is the Python 3 version because we're importing it from `builtins` in Python 2 as well
+           - Also note that this **(click)** `range` object is the Python 3 version because we're importing it from `builtins` as well
            - **(click)** And the print statement was turned into a print function
-           - *(pause)*
-           - That `\_\_future\_\_` thing is something the core developers added to Python 2 to allow opting in to certain big and important Python 3 features before you upgrade
-           - **(click)** These `builtins` things are something different though
-           - The `future` library includes a `builtins` library *with* it to allow Python 2 code to use the Python 3 built-ins
+           - *(pause and scroll)*
+           - That `\_\_future\_\_` thing is something the core developers added to Python 2 to allow opting in to certain Python 3 features **before you even upgrade**
+           - **(click)** These `builtins` imports are quite different though
+           - The `future` library includes a `builtins` library *with* it to allow Python 2 code to use the **Python 3 built-ins**
            - It's called `builtins` because Python 3 already *has* a `builtins` library that's equivalent to this **(click)**
-           - So when we eventually drop support for Python 2 and stop using `future`, we don't actually have to change any of this code
-           - But we could eventually clean it up by removing **(click)** all these *unnecessary* imports statements from the top of our file
-           - So using an automated conversion tool can be **really** helpful
+           - So when we eventually drop support for Python 2 this code will keep working in Python 3, even *after* we **stop using `future`**
+           - We will of course eventually clean up this code by removing **(click)** those *unnecessary* imports statements
+           - *(pause)*
+           - So using an automated conversion tool can be **really** helpful...
           </aside>
         </section>
 
@@ -640,17 +675,16 @@ def save_tabbed_data_as_csv(url, filename):
     <span class="fragment bold-current" data-fragment-index=6><span class="fragment bold-current" data-fragment-index=8>csv.writer</span></span>(csv_file).writerows(reader)<span class="fragment bold-current" data-fragment-index=9></span>
           </code></pre>
          <aside class="notes" data-markdown>
-           - **TODO** improve these notes
-           - So that they use the new Python 3 versions of these libraries:
-             - **(click)** `urllib.request`
-             - and **(click)** `io`
-           - And **(click)** it monkey patches the standard library so that these imports work even in Python 2
-           - There's a problem with this code though... it no longer works in either Python 2 or Python 3
+           - **TODO** improve these notes?
+           - So that they use the new Python 3 versions of these libraries: **(click)** `urllib.request` and **(click)** `io`
+           - To get the Python 3 versions of these libraries to work in Python 2, `futurize` also **(click)** monkey patches the Python 2 standard library using `install_aliases`
+           - *(pause)* This is both a step forward and a step back.  I say that because this code is actually broken now.
+           - It **doesn't work** in Python 3 yet and it **doesn't even work in Python 2** anymore
            - One problem is that **(click)** `urlopen` gives us bytes back
            - But **(click)** `io.StringIO` expects unicode
            - Also the `csv` `reader` **(click)** and `writer` objects will not work with bytes in Python 3
            - But we're opening our output file **(click)** in bytes mode
-           - Which Python 3's `csv.writer` **(click)** object is not going to be happy about
+           - Which the Python 3 `csv.writer` **(click)** object is **not** going to be happy about
            - So... after we've run our automated conversion tool, **(click)** we still need to fix this code manually
            - We can do... that like this...
           </aside>
@@ -672,14 +706,15 @@ def save_tabbed_data_as_csv(url, filename):
           </code></pre>
          <aside class="notes" data-markdown>
            - **TODO** improve these notes
-           - Here we're **(click)** decoding the byte string we get back from urlopen
-           - So that **(click)** `io.StringIO` will be happy
+           - So we're now **(click)** **decoding** the **byte string** that we get back from urlopen
+           - *So* that **(click)** `io.StringIO` will be *happy*
            - And then we're opening up our output file in **(click)** text mode
            - and using a back-ported version of the Python 3 **(click)** `open` function
-           - So that we can use the **(click)** `newline` keyword argument that didn't used to exist in Python 2
+           - So that we can now use the **(click)** `newline` keyword argument that didn't used to exist in Python 2
            - Which is the recommended way of handling Windows support for CSV files, **(click)** which is the whole reason we had that bytes mode writing going on in the first place
            - *(pause)* *(breathe)*
-           - So what I'm trying to get at.. is that
+           - So unless you've used the `urllib` and `csv` modules in both Python 2 and Python 3, that was probably a little confusing
+           - But what I'm *trying* to **get at**.. is that...
           </aside>
         </section>
 
@@ -687,13 +722,14 @@ def save_tabbed_data_as_csv(url, filename):
           <h2>The automated conversion tools won't solve all your problems</h2>
           <h3 class="fragment">You'll still need to fix code manually</h3>
           <aside class="notes" data-markdown>
-            - **TODO** fix the pacing/transition here?
-            - The automated conversion tools are not a magic wand
+            - The automated conversion tools are **not a magic wand**
             - They'll push you in the right direction
             - **(click)** but you'll still need to fix some things manually
-            - *(pause)*
-            - You may have noticed that every bug I just showed you, had to do with *one* **big** issue
-            - and it's a pretty issue when migrating from 2 to 3
+            - There's really no *getting around* this problem
+            - *(very long pause)*
+            - So you may have noticed that the bugs that we just fixed manually all related to with **the same underlying issue**
+            - and it's a **pretty big** issue when migrating from Python 2 to Python 3
+            - The issue is... unicode
           </aside>
         </section>
 
@@ -706,7 +742,7 @@ def save_tabbed_data_as_csv(url, filename):
             <li class="fragment">Embrace the "unicode sandwich" from <a href="https://nedbatchelder.com/text/unipain.html">Pragmatic Unicode</a></li>
           </ul>
           <aside class="notes" data-markdown>
-            - **(click)** Python 3 (wonderfully!) distinguishes between text and bytes.
+            - Python 3 (wonderfully!) **(click)** distinguishes between text and bytes.
             - **(click)** Python 2 does not.
             - So a lot of the ambiguities that the automated conversion tools can't handle are due to this distinction between text and bytes and the fact that Python 2 was sloppy about requiring this distinction
             - Because Python 3 requires distinguish between bytes and unicode but Python 2 doesn't, **(click)** you cannot unambiguously convert arbitrary Python 2 code into Python 3 code
