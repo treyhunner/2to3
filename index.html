@@ -36,9 +36,9 @@
           </p>
           <aside class="notes" data-markdown>
             - Hello!  Who is using Python 3 already?  Who is *excited* about upgrading to Python 3?  Who's upgrading because you have to?
-            - So this is a very large and scary topic and I have enough time to barely touch the surface of most of the things we're going to discuss
-            - So my **goal** is to give you a taste for what using Python 3 is like and what's like to upgrade while also nudging you in the right direction so that you can take a *deeper* look at all this when you actually upgrade
-            - I'm going to gloss over *a lot* of things, so don't expect to understand everything I'm doing deeply.  This is the start of your research, not the end.
+            - So this is a very large and scary topic and I have enough time to *barely* touch the surface of most of the things we're going to discuss
+            - So my **goal** is to give you a taste for what using Python 3 is like and what it's like to upgrade while also nudging you in the right direction so that you can take a *deeper* look at all of this when you actually upgrade
+            - I'm going to gloss over **a lot** of things, so don't expect to understand everything I'm doing deeply.  This is the start of your research, not the end.
           </aside>
         </section>
 
@@ -69,11 +69,11 @@
           </div>
           <aside class="notes" data-markdown>
             - My name is Trey.  I help Python &amp; Django teams on-board new teammates and turn their front-end developers into full-stack Django developers.
-            - I also host a free live webcast every week on Python-related topics, usually Saturdays at 9am Pacific Time
-            - And I run a Python exercise subscription service where I take the most valuable exercises from my trainings and send 1 out every week.  It's called Python Morsels.
+            - I also host a free live webcast every week on Python-related topics, *usually* Saturdays at 9am Pacific Time
+            - And I run a Python exercise subscription service where I take the most *valuable* exercises from my trainings and send 1 out every week.  It's called Python Morsels.
             - I'm also one of the co-organizers of my local Python meetup in San Diego
             - I've helped organize four Django Girls workshops in Southern California
-            - And I'm also one of the 11 directors at the Python Software Foundation
+            - And I'm also one of the 11 directors on the Python Software Foundation board
             - That's a bit about me... let's talk about Python
           </aside>
         </section>
@@ -96,12 +96,12 @@
             - There are **a lot** of good reasons **(click)** to upgrade from Python 2 to Python 3
             - If you don't think you have a reason to upgrade...
             - **(click)**
-            - You'll probably **(click)** find one soon...
+            - You'll *probably* **(click)** find one soon...
             - *(pause)* **(click)**
             - *(continue pause)*
             - In this talk, we are *not* going to focus on the *necessary* reasons to upgrade
             - **(click)** You'll eventually find those on your own
-            - We're going to focus on the exciting reasons to upgrade
+            - **We're** going to focus on the exciting reasons to upgrade
             - So let's look at what you've been *missing out* on so far by **not** using Python 3
             - **[2 minutes]**
           </aside>
@@ -125,18 +125,18 @@
 <span class="fragment">>>> 5 / 2
 2.5</span></code></pre>
           <aside class="notes" data-markdown>
-            - Python 3 has lots of new syntax, most of which you can't even opt into in Python 2
-            - In Python 3, **(click)** you can use underscores in numeric literals to make them easier to read
+            - Python 3 has *lots* of new syntax, most of which you can't even opt into in Python 2
+            - In Python 3, **(click)** you can use **underscores** in numeric literals to make them easier to read
             - It's easy to see here that we have 1 million and 10 million
-            - Python 3 also includes a lot more generalizations for the `\*` and `\*\*` operators
+            - Python 3 also includes **a lot** more generalizations for the `\*` and `\*\*` operators
             - **(click)** For example you can use `\*` in multiple assignment now
-            - **(click)** Or even when you're constructing a list
-            - Also Python 2's print statement **(click)** turned into print function in Python 3, which is a lot more powerful and flexible than the old print statement ever was
-            - Python 3 also has a new string formatting syntax **(click)**, called f-strings, that are a pretty big leap up over the old string formatting syntaxes from Python 2
-            - And lots of other little things just a became a bit more sensible **(click)**
+            - **(click)** **Or** even when you're constructing a list you can use star
+            - Also Python 2's print statement **(click)** turned into print function in Python 3, which is a lot more **powerful and flexible** than the old print statement ever was
+            - Python 3 also has a new string formatting syntax **(click)**, called **f-strings**, that are a pretty big leap up over the old string formatting syntaxes from Python 2
+            - And lots of other little things just became a bit more sensible **(click)**
             - For example 5 divided by 2 in is 2.5 now... just like in real life
             - *(pause)*
-            - Let's take a look at a chunk of Python 2 code and compare it to Python 3...
+            - Let's take a look at a larger chunk of Python 2 code and **compare** it to Python 3...
           </aside>
         </section>
 
@@ -171,8 +171,8 @@ True</span>
             - It has latitude and longitude attributes **(click)**
             - And it has a nice string representation **(click)**
             - It can even be compared **(click)** to similar objects **(click)**
-            - In Python 3, this class can be even simpler though
-            - That dunder ne method isn't actually necessary in Python 3 **(click)**
+            - In Python 3, this class can be **even simpler** though
+            - That dunder ne method isn't actually *necessary* in Python 3 **(click)**
           </aside>
         </section>
 
@@ -203,8 +203,8 @@ LatLong(lat=32.5395, long=-117.0440)
 True
           </code></pre>
           <aside class="notes" data-markdown>
-            - Because in Python 3, inequality is implemented as the opposite of equality by default
-            - Another thing that could be improved in Python 3 is that dunder repr method
+            - Because **in Python 3**, inequality is implemented as the **opposite** of equality by default
+            - Another thing that we could improve by Python 3 is that dunder repr method
             - That string representation could be much more shorter with an f-string
           </aside>
         </section>
@@ -266,8 +266,9 @@ class LatLong:
     long: float
 </code></pre>
           <aside class="notes" data-markdown>
-            - Dataclasses implement sane defaults for initializers, string representations, and comparison operators
-            - So all those methods we defined before are created for us automatically
+            - Dataclasses implement **sane defaults** for initializers, string representations, and comparison operators
+            - So all those *methods* we defined before are **created** for us automatically
+            - *(pause)*
             - Let's take a look at another example
           </aside>
         </section>
@@ -286,15 +287,15 @@ class ComparableDict(UserDict):
         return <span class="fragment bold">super()</span>.__lt__(other)
 </span></code></pre>
           <aside class="notes" data-markdown>
-            - Python 3 also has a lot of things that were either missing or just not very usable in Python 2
-            - For example **(click)** the collections module has a class for making your own custom dictionary-like classes
-            - This existed in Python 2, but it some very unfortunate design decisions meant that you couldn't actually use it
-            - There's also a lot more helper functions in Python 3... **(click)**
-            - this one, total_ordering, was back-ported to Python 2 but the Python 2 version has a bug that makes it painful to use
-            - So writing a class like this is a lot less painful in Python 3
+            - Python 3 also has a lot of things that were either *missing* or just not very usable in Python 2
+            - For example **(click)** the **collections** module has a class for making your own custom dictionary-like classes
+            - This existed in Python 2, but due to some very unfortunate design decisions, you couldn't actually *use* it
+            - There's also a lot more *helper functions* in Python 3... **(click)**
+            - This one, total_ordering, was **back-ported** to Python 2 but the Python 2 version has a bug that makes it painful to use
+            - So writing a class like this **(click)** is **a lot less painful** in Python 3
             - Also Python 3 has lots of little things that make everyday coding easier...
             - **(click)** like the fact that the super function doesn't need any arguments to work
-            - In general... I think you'll find that if like Python 2
+            - In general... I think you'll find that if *like* Python 2
           </aside>
         </section>
 
@@ -303,9 +304,9 @@ class ComparableDict(UserDict):
           <h2><span class="fragment" data-fragment-index=2>Brought to you by the makers of</span> Python 2</h2>
           <aside class="notes" data-markdown>
             - ...
-            - You'll probably love Python 3 **(click)**
-            - It's pretty much the same thing... but with even more of the good stuff
-            - Python 3 is more consistent than Python 2 and feels more natural
+            - You'll probably *love* Python 3 **(click)**
+            - It's pretty much the same thing... but with **even more** of the good stuff
+            - Python 3 is **more consistent** than Python 2 and feels **more natural**
             - It feels more like how Python *should* have been all along
             - **[7 minutes]**
           </aside>
@@ -324,9 +325,10 @@ class ComparableDict(UserDict):
             <li class="fragment">Extreme: rewrite the entire code base in Python 3</li>
           </ul>
           <aside class="notes" data-markdown>
-            - We're going to need to choose between a few different approaches to upgrading our code
-            - **(click)** The gradual approach is to add support for Python 3 and then eventually drop Python 2 support at some point in the future.  This means writing code in such a way that it can run in *both* Python 2 and Python 3 at the same time.
-            - **(click)** The sudden approach to upgrading involves upgrading your entire codebase to Python 3 at once without worrying about supporting Python 2 at the same time.  This requires dropping Python 2 support during your upgrade process.
+            - So now we're going to talk about upgrading our code to Python 3
+            - When upgrading we're going to need to *choose* between **a few different approaches**
+            - **(click)** The *gradual approach* is to add support for Python 3 and then eventually drop Python 2 support at some point in the future.  This means writing code in such a way that it can run in *both* Python 2 and Python 3 at the same time.
+            - **(click)** The sudden approach to upgrading involves upgrading your entire codebase to Python 3 at once without worrying about supporting Python 2 at the same time.  This requires *dropping* support for Python 2 **during** your upgrade process.
             - **(click)** The extreme approach to upgrading is to rewrite your entire codebase in Python 3.  If you have a really small codebase, this isn't necessary the worst idea.  We're not going to talk about that approach at all though.
           </aside>
         </section>
@@ -339,12 +341,12 @@ class ComparableDict(UserDict):
             <li class="fragment">We'll discuss gradual upgrades first</li>
           </ul>
           <aside class="notes" data-markdown>
-            - If you migrate all your code to Python 3 at once, you could put your development cycle on pause for a really long time
-            - **(click)** that's fine if you can stop shipping new code for a few weeks as you upgrade
-            - If your code base doesn't change anymore, sudden migrations are pretty great
+            - If you migrate all your code to Python 3 at once, you *could* put your development cycle on pause for a **really long time**
+            - **(click)** that's fine, *if* you can **stop shipping new code** for a few weeks as you upgrade
+            - If your code base doesn't *change anymore*, sudden migrations are pretty great
             - **(click)** But if you *do* need to keep shipping code, I'd recommend a gradual migration process
-            - Migrating gradually allows you to slowly migrate pieces of your code over time, without losing a big chunk of time all at once
-            - So I'm going to focus **(click)** on migrating your code gradually so you can keep shipping code as you migrate
+            - Migrating *gradually* allows you to **slowly** migrate pieces of your code over time, without losing a big chunk of time all at once
+            - So I'm going to focus **(click)** on migrating your code *gradually* so you can keep shipping code as you migrate
             - We'll gradually *add* support for Python 3 and then only *later* drop support for Python 2
             - **[9 minutes]**
           </aside>
